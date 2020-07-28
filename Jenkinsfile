@@ -3,12 +3,12 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     agent any
     stages {
-        stage('Static::Lint HTML') {
+        stage('Lint HTML') {
             steps {
                 sh 'tidy -q -e *.html'
             }
         }
-        stage('Static::Deploy to AWS') {
+        stage('Deploy to AWS') {
             steps {
                 withAWS(region:'eu-west-1',credentials: 'aws-static') {
                     timeout(time: 3, unit: 'MINUTES') {
@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-        stage('Static::Post Deploy Test') {
+        stage('Post Deploy Test') {
             steps {
                 echo '<<<<Testing Deployment>>>>'
                 script {
