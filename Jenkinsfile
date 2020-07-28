@@ -14,7 +14,7 @@ pipeline {
                     timeout(time: 3, unit: 'MINUTES') {
                         retry(5) {
                             echo '<<<<Uploading content to S3 with AWS Credentials>>>>'
-                            s3Upload(pathStyleAccessEnabled:true, payloadSigningEnabled: true, file:'index.html', bucket:'mansong-jenkins-udacity')
+                            s3Upload(pathStyleAccessEnabled:true, payloadSigningEnabled: true, file:'index.html', bucket:'udacity-thingx-jenkins')
                         }
                     }
                 }
